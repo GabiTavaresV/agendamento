@@ -13,7 +13,7 @@ export class MongoCreateProfissional implements ICreateProfissionalRepository {
       .insertOne(params);
 
     const user = await MongoClient.db
-      .collection<MongoUser>("test")
+      .collection<MongoUser>("profissional")
       .findOne({ _id: insertedId });
 
     if (!user) {
