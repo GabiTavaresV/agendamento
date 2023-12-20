@@ -1,7 +1,7 @@
 import {
   CreateProfissionalParams,
   ICreateProfissionalRepository,
-} from "../controllers/professional/protocolsCreate";
+} from "../controllers/create-professional/interface-create";
 import { MongoClient } from "../database/mongo";
 import { MongoUser } from "../models/mongo-protocols";
 import { Profissional } from "../models/profissional";

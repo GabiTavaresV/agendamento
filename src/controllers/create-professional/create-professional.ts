@@ -4,7 +4,7 @@ import { HttpRequest, HttpResponse, IController } from "../protocols";
 import {
   CreateProfissionalParams,
   ICreateProfissionalRepository,
-} from "./protocolsCreate";
+} from "./interface-create";
 
 export class CreateProfessionalController implements IController {
   constructor(
