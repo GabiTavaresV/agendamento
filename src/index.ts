@@ -6,9 +6,11 @@ import { MongoClient } from "./database/mongo";
 const main = async () => {
   config();
 
-  await MongoClient.connect();
   const app = express();
+  app.use(express.json());
   app.use(router);
+
+  await MongoClient.connect();
 
   const port = process.env.PORT || 3333;
 
