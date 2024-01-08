@@ -5,6 +5,8 @@ import { GetProfessionalController } from "./controllers/get-professional/get-pr
 import { MongoGetUsersRepository } from "./repositories/mongo-get-profissional";
 import { CreateServicesController } from "./controllers/create-services/create-services";
 import { MongoCreateServices } from "./repositories/mongo-post-services";
+import { GetServiceController } from "./controllers/get-service/get-service";
+import { MongoGetServiceRepository } from "./repositories/mongo-get-service";
 
 export const router = express.Router();
 
@@ -18,9 +20,14 @@ const createServicesController = new CreateServicesController(
 );
 
 const mongoGetProfissional = new MongoGetUsersRepository();
+const mongoGetServiceRepository = new MongoGetServiceRepository();
 
 const getProfissionalController = new GetProfessionalController(
   mongoGetProfissional
+);
+
+const getServiceController = new GetServiceController(
+  mongoGetServiceRepository
 );
 
 router.post("/v1/create-profissional", async (req, res) => {
@@ -41,6 +48,11 @@ router.post("/v1/create-service", async (req, res) => {
 
 router.get("/v1/find-profissional", async (req, res) => {
   const { body, statusCode } = await getProfissionalController.handle();
+  res.status(statusCode).send(body);
+});
+
+router.get("/v1/find-service", async (req, res) => {
+  const { body, statusCode } = await getServiceController.handle();
   res.status(statusCode).send(body);
 });
 
