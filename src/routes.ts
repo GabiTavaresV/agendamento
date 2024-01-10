@@ -51,7 +51,7 @@ router.get("/v1/find-profissional", async (req, res) => {
   res.status(statusCode).send(body);
 });
 
-router.get("/v1/find-service", async (req, res) => {
+router.get("/v1/find-service/:id?", async (req, res) => {
   const { body, statusCode } = await getServiceController.handle();
   res.status(statusCode).send(body);
 });
