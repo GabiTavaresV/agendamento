@@ -9,16 +9,18 @@ import { GetServiceController } from "./controllers/get-service/get-service";
 import { MongoGetServiceRepository } from "./repositories/mongo-get-service";
 import { CreateServiceByProfessionalController } from "./controllers/create-service-by-professional/create-service-by-professional";
 import { MongoCreateServicesByProfissional } from "./repositories/mongo-post-services-profissional";
+import { CreateProfissionalService } from "./services/create-profissional";
 
 export const router = express.Router();
 
 const mongoCreateProfissionalRepository = new MongoCreateProfissional();
+const service = new CreateProfissionalService(
+  mongoCreateProfissionalRepository
+);
 const mongoCreateServices = new MongoCreateServices();
 const mongoCreateServicesByProfissional =
   new MongoCreateServicesByProfissional();
-const createProfissionalController = new CreateProfessionalController(
-  mongoCreateProfissionalRepository
-);
+const createProfissionalController = new CreateProfessionalController(service);
 const createServicesController = new CreateServicesController(
   mongoCreateServices
 );
