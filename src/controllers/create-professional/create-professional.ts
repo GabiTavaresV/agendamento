@@ -1,14 +1,13 @@
 import { badRequest, created } from "../../helppers";
 import { Profissional } from "../../models/profissional";
 import { HttpRequest, HttpResponse, IController } from "../protocols";
-import {
-  CreateProfissionalParams,
-  ICreateProfissionalRepository,
-} from "./interface-create";
+import { CreateProfissionalParams } from "./interface-create";
+import { CreateProfissionalService } from "../../services/create-profissional";
 
 export class CreateProfessionalController implements IController {
   constructor(
-    private readonly createProfissionalRepository: ICreateProfissionalRepository
+    // private readonly createProfissionalRepository: ICreateProfissionalRepository,
+    private readonly createProfissionalService: CreateProfissionalService
   ) {}
 
   async handle(
@@ -25,7 +24,7 @@ export class CreateProfessionalController implements IController {
         }
       }
 
-      const profissional = await this.createProfissionalRepository.createUser(
+      const profissional = await this.createProfissionalService.create(
         httpRequest.body!
       );
       return created<Profissional>(profissional);
